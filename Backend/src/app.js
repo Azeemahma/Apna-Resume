@@ -14,9 +14,12 @@ app.use(cookieParser());
 
 const corsOptions = {
     origin: [process.env.ALLOWED_SITE],
-    credentials: true
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true,
+    optionsSuccessStatus: 204
 };
 
+app.options('*', cors(corsOptions));
 app.use(cors(corsOptions));
 
 app.use("/api/users", userRouter);

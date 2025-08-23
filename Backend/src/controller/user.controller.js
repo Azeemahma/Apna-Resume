@@ -13,11 +13,11 @@ const start = async (req, res) => {
 };
 
 const registerUser = async (req, res) => {
-  console.log("Registration Started");
+  console.log("DEBUG: registerUser function started.");
   const { fullName, email, password } = req.body;
 
   if (!fullName || !email || !password) {
-    console.log("Registration Failed data insufficeient ");
+    console.log("DEBUG: Registration failed - insufficient data.");
     return res
       .status(400)
       .json(
@@ -29,23 +29,25 @@ const registerUser = async (req, res) => {
   }
 
   try {
+    console.log(`DEBUG: Checking for existing user with email: ${email}`);
     const existingUser = await User.findOne({ email });
 
     if (existingUser) {
-      console.log("Registration Failed already registered user");
+      console.log("DEBUG: User already exists.");
       return res
         .status(409)
         .json(new ApiError(409, "User already registered."));
     }
 
+    console.log("DEBUG: No existing user found. Creating new user...");
     const newUser = await User.create({
       fullName,
       email,
       password,
     });
 
-    console.log("Registration Successful");
-    res.status(201).json(
+    console.log(`DEBUG: New user created with ID: ${newUser._id}`);
+    return res.status(201).json(
       new ApiResponse(
         201,
         {
@@ -59,14 +61,12 @@ const registerUser = async (req, res) => {
       )
     );
   } catch (err) {
-    // Change the error parameter to err
-    console.log("Registration Failed due to server error");
+    console.log("DEBUG: An error occurred in the try-catch block.");
     console.error("Error while creating user:", err);
     return res
       .status(500)
       .json(new ApiError(500, "Internal Server Error.", [], err.stack));
   }
-  // return res.status(200).send("Hello WOrld")
 };
 
 const loginUser = async (req, res) => {
