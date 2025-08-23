@@ -11,7 +11,7 @@ const axiosInstance = axios.create({
 
 const startUser = async () => {
   try {
-    const response = await axiosInstance.get("users/");
+    const response = await axiosInstance.get("users");
     return response.data;
   } catch (error) {
     throw new Error(
@@ -22,7 +22,7 @@ const startUser = async () => {
 
 const registerUser = async (data) => {
   try {
-    const response = await axiosInstance.post("users/register/", data);
+    const response = await axiosInstance.post("users/register", data);
     return response.data;
   } catch (error) {
     throw new Error(
@@ -33,7 +33,7 @@ const registerUser = async (data) => {
 
 const loginUser = async (data) => {
   try {
-    const response = await axiosInstance.post("users/login/", data);
+    const response = await axiosInstance.post("users/login", data);
     return response.data;
   } catch (error) {
     throw new Error(
@@ -44,7 +44,7 @@ const loginUser = async (data) => {
 
 const logoutUser = async () => {
   try {
-    const response = await axiosInstance.get("users/logout/");
+    const response = await axiosInstance.get("users/logout");
     return response.data;
   } catch (error) {
     throw new Error(
