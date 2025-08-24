@@ -13,7 +13,7 @@ Apna Resume is a modern AI-powered platform designed to help users create profes
 
 
 
-🌐 Live demo: [Apna Resume](https://main--ai-resume-builder-07.netlify.app/)  
+🌐 Live demo: [Apna Resume](https://apna-resume-1.onrender.com/)  
 
 
 ---
