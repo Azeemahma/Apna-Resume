@@ -11,6 +11,8 @@ import AuthPage from "./pages/auth/customAuth/AuthPage.jsx";
 import { resumeStore } from "./store/store";
 import { Provider } from "react-redux";
 
+console.log("VITE_GEMINI_API_KEY:", import.meta.env.VITE_GEMINI_API_KEY);
+
 const router = createBrowserRouter([
   {
     element: <App />,
